@@ -50,7 +50,7 @@ async function setupCamera() {
   video.height = videoHeight;
 
   const mobile = isMobile();
-  window.stream = await navigator.mediaDevices.getUserMedia({
+  const stream = await navigator.mediaDevices.getUserMedia({
     'audio': false,
     'video': {
       facingMode: 'user',
@@ -58,7 +58,7 @@ async function setupCamera() {
       height: mobile ? undefined : videoHeight,
     },
   });
-  video.srcObject = window.stream;
+  video.srcObject = stream;
 
   return new Promise((resolve) => {
     video.onloadedmetadata = () => {
@@ -247,14 +247,6 @@ function detectPoseInRealTime(video, net) {
         break;
     }
 
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('stop-video').style.display = 'block';
-    if (window.needStopWindow) {
-      document.getElementById('stop-video').style.display = 'none';
-      window.stream.getTracks()[0].stop();
-      return;
-    }
-
     ctx.clearRect(0, 0, videoWidth, videoHeight);
 
     if (guiState.output.showVideo) {
@@ -264,6 +256,8 @@ function detectPoseInRealTime(video, net) {
       ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
       ctx.restore();
     }
+
+    document.getElementById('loading').style.display = 'none';
 
     // For each pose (i.e. person) detected in an image, loop through the poses
     // and draw the resulting skeleton and keypoints if over certain confidence
@@ -313,7 +307,7 @@ async function bindPage() {
   }
 
   guiState.net = net;
-  // setupGui([], net);
+  setupGui([], net);
   // setupFPS();
   detectPoseInRealTime(video, net);
 }
