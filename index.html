@@ -41,13 +41,15 @@
     <div id='main' style='display:none' align='center'>
         <video id="video" playsinline style=" -moz-transform: scaleX(-1); -o-transform: scaleX(-1); -webkit-transform: scaleX(-1); transform: scaleX(-1); display: none; ">
         </video>
-        <div id="ThreeJS" style="position: absolute; right: 51%; width: 600px; height: 500px; top: 30px; background-color: grey; "></div>
-        <canvas id="output" style="position: absolute; left: 51%; top: 30px; "></canvas>
+        <!-- <div id="ThreeJS" style="position: absolute; right: 51%; width: 600px; height: 500px; top: 30px; background-color: blue; "></div> -->
+        <canvas id="output"></canvas>
+        <!-- <canvas id="output" style="position: absolute; left: 51%; top: 30px; "></canvas> -->
         <br/>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.js"></script>
     <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/Detector.js"></script>
     <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/controls/OrbitControls.js"></script>
+    <!-- <script src="app.js"></script> -->
 
     <!-- <script src="https://unpkg.com/@tensorflow/tfjs"></script> -->
     <script src="ai/tf.min.js"></script>
@@ -56,7 +58,6 @@
 
     <script src="demo_util.js"></script>
     <script src="camera.js"></script>
-    <script src="app.js"></script>
 </body>
 
 </html>
